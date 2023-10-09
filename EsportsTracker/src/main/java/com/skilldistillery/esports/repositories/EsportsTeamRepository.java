@@ -6,6 +6,7 @@ import com.skilldistillery.esports.entities.EsportsTeam;
 
 public interface EsportsTeamRepository extends JpaRepository<EsportsTeam, Integer>{
 	
+	EsportsTeam searchById(int teamId);
 	
 
 }

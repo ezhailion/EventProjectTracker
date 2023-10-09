@@ -21,12 +21,18 @@ public class EsportsTeamServiceImpl implements EsportsTeamService {
 	@Override
 	public EsportsTeam retrieveTeam(int teamId) {
 		// TODO Auto-generated method stub
-		return null;
+		if(!teamRepo.existsById(teamId)) {
+			
+			return null;
+		}
+		return teamRepo.searchById(teamId);
 	}
 
 	@Override
 	public EsportsTeam create(EsportsTeam team) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
