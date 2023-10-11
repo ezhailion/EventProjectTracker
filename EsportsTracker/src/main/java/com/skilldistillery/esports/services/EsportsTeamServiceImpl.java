@@ -30,22 +30,29 @@ public class EsportsTeamServiceImpl implements EsportsTeamService {
 
 	@Override
 	public EsportsTeam create(EsportsTeam team) {
+		teamRepo.saveAndFlush(team);
 		
 		
-		
-		return null;
+		return team;
 	}
 
 	@Override
 	public EsportsTeam update(int teamId, EsportsTeam team) {
-		// TODO Auto-generated method stub
-		return null;
+		EsportsTeam original = teamRepo.searchById(teamId);
+		original.setTeamName(team.getTeamName());
+		original.setDisbandedDate(team.getDisbandedDate());
+		original.setLastGamePlayed(team.getLastGamePlayed());
+
+		teamRepo.saveAndFlush(original);
+		return original;
 	}
 
 	@Override
 	public boolean delete(int teamId) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		teamRepo.deleteById(teamId);
+		return !teamRepo.existsById(teamId);
 	}
 
 }
