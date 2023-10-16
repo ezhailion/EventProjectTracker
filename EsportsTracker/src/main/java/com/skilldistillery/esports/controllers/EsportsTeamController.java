@@ -2,6 +2,7 @@ package com.skilldistillery.esports.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,22 +34,25 @@ public class EsportsTeamController {
 	
 		return teamServ.retrieveTeam(teamId);
 	}
-	@PostMapping("teams/{teamId}")
-	public EsportsTeam createTeam(@PathVariable int teamId, @RequestBody EsportsTeam team, HttpServletResponse resp) {
+	@PostMapping("teams")
+	public EsportsTeam createTeam(@RequestBody EsportsTeam team, HttpServletResponse resp, HttpServletRequest req) {
 		EsportsTeam created = teamServ.create(team);
 		
 		if(created != null) {
 			
 			resp.setStatus(201);
+			resp.setHeader("Location",req.getRequestURL().append("/").append(created.getId()).toString());
 		}
 		
 		
 		return created;
 	}
 	@PutMapping("teams/{teamId}")
-	public EsportsTeam updateTeam(@PathVariable int teamId, @RequestBody EsportsTeam team, HttpServletResponse resp) {
+	public EsportsTeam updateTeam(@PathVariable int teamId, @RequestBody EsportsTeam team, HttpServletResponse resp, HttpServletRequest req) {
 		EsportsTeam updated = teamServ.update(teamId, team);
 		
+		resp.setHeader("Location",req.getRequestURL().append("/").append(updated.getId()).toString());
+	
 		return updated;
 	}
 	@DeleteMapping("teams/{teamId}")

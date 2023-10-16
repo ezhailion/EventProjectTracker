@@ -42,7 +42,7 @@ public class EsportsTeamServiceImpl implements EsportsTeamService {
 		original.setTeamName(team.getTeamName());
 		original.setDisbandedDate(team.getDisbandedDate());
 		original.setLastGamePlayed(team.getLastGamePlayed());
-
+		original.setMatchesPlayed(team.getMatchesPlayed());
 		teamRepo.saveAndFlush(original);
 		return original;
 	}

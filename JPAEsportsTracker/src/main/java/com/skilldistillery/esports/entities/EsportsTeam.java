@@ -31,7 +31,8 @@ public class EsportsTeam {
 	private LocalDateTime lastGamePlayed;
 	@Column(name="disband_date")
 	private LocalDate disbandedDate;
-	
+	@Column(name="matches_played")
+	private Integer matchesPlayed;
 
 	public EsportsTeam() {
 		super();
@@ -85,6 +86,18 @@ public class EsportsTeam {
 		this.teamName = teamName;
 	}
 
+	public void setMatchesPlayed(Integer matchesPlayed) {
+		this.matchesPlayed = matchesPlayed;
+	}
+
+	public Integer getMatchesPlayed() {
+		return matchesPlayed;
+	}
+//
+//	public void setMatchesPlayed(int matchesPlayed) {
+//		this.matchesPlayed = matchesPlayed;
+//	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -104,7 +117,23 @@ public class EsportsTeam {
 
 	@Override
 	public String toString() {
-		return "EsportsTeam [id=" + id + ", teamName=" + teamName + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("EsportsTeam [id=");
+		builder.append(id);
+		builder.append(", teamName=");
+		builder.append(teamName);
+		builder.append(", createDate=");
+		builder.append(createDate);
+		builder.append(", lastUpdate=");
+		builder.append(lastUpdate);
+		builder.append(", lastGamePlayed=");
+		builder.append(lastGamePlayed);
+		builder.append(", disbandedDate=");
+		builder.append(disbandedDate);
+		builder.append(", matchesPlayed=");
+		builder.append(matchesPlayed);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 	
