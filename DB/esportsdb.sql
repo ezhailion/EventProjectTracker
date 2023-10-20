@@ -23,10 +23,11 @@ DROP TABLE IF EXISTS `esports_team` ;
 CREATE TABLE IF NOT EXISTS `esports_team` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `team_name` VARCHAR(100) NULL,
-  `create_date` DATE NULL,
+  `create_date` DATETIME NULL,
   `last_update` DATETIME NULL,
   `last_game_played` DATETIME NULL,
   `disband_date` DATE NULL,
+  `matches_played` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -46,7 +47,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `esportsdb`;
-INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`) VALUES (1, 'SKT T1 Telecom', '2014-02-15', NULL, NULL, NULL);
+INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`, `matches_played`) VALUES (1, 'SKT T1 Telecom', NULL, NULL, '2016-06-07', '2018-01-01', 468);
+INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`, `matches_played`) VALUES (DEFAULT, 'TSM', NULL, NULL, '2023-10-12', '2023-11-11', 800);
+INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`, `matches_played`) VALUES (DEFAULT, 'C9', NULL, NULL, '2023-09-26', '2023-12-12', 648);
+INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`, `matches_played`) VALUES (DEFAULT, 'IMT', NULL, NULL, '2023-06-10', '2023-09-09', 543);
+INSERT INTO `esports_team` (`id`, `team_name`, `create_date`, `last_update`, `last_game_played`, `disband_date`, `matches_played`) VALUES (DEFAULT, 'FLY', NULL, NULL, '2023-05-24', '2023-12-28', 632);
 
 COMMIT;
 

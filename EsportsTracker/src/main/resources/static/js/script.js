@@ -173,23 +173,26 @@ function updating(teamId) {
 	idInp.type = 'hidden';
 	idInp.name = 'id';
 	idInp.value = teamId;
+	
 	let disbandDateLabel = document.createElement('label');
 	disbandDateLabel.for = 'disbandedDate';
 	disbandDateLabel.textContent = 'Date Disbanded: ';
+	
 	let disbandDateInp = document.createElement('input');
 	disbandDateInp.type = 'date';
 	disbandDateInp.name = 'disbandedDate';
+	
 	let matchesPlayed = document.createElement('input');
 	let matchesLabel = document.createElement('label');
 	matchesLabel.for = 'matchesPlayed';
 	matchesLabel.textContent = 'Matches Played: ';
 	matchesPlayed.name = 'matchesPlayed';
 	matchesPlayed.type = 'number';
-	matchesPlayed.appendChild(matchesLabel);
-	form.appendChild(matchesPlayed);
 	let updateButton = document.createElement('button');
 	updateButton.name = 'updateTeamButton';
 	updateButton.textContent = 'Update Team';
+	matchesLabel.appendChild(matchesPlayed);
+	form.appendChild(matchesPlayed);
 	form.appendChild(idInp);
 	form.appendChild(updateButton);
 	form.appendChild(teamLabel);
