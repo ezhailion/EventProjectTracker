@@ -140,6 +140,22 @@ function displayAllTeams(teamList) {
 	})
 
 }
+function averageTeamMatches(teamList) {
+	if (Array.isArray(teamList) && teamList.length > 0) {
+		let matches = 0;
+		let counter = 0;
+		for (let team of teamList) {
+			matches += team.matchesPlayed;
+			counter++;
+
+		}
+		console.log(matches);
+		console.log(counter);
+			let avg = matches / counter;
+			console.log(avg);
+			return avg;
+	}
+}
 function loadAllTeams() {
 	let xhr = new XMLHttpRequest();
 	xhr.open('GET', 'api/teams')
@@ -303,22 +319,7 @@ function getFormData(updateForm) {
 	})
 	return updatedData;
 }
-function averageTeamMatches(teamList) {
-	if (Array.isArray(teamList) && teamList.length > 0) {
-		let matches = 0;
-		let counter = 0;
-		for (let team of teamList) {
-			matches += team.matchesPlayed;
-			counter++;
 
-		}
-		console.log(matches);
-		console.log(counter);
-			let avg = matches / counter;
-			console.log(avg);
-			return avg;
-	}
-}
 function displayTeam(team) {
 	let div = document.getElementById('teamListDiv');
 	div.textContent = '';

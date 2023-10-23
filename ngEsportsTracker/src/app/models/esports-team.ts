@@ -4,7 +4,7 @@ export class EsportsTeam {
   id: number;
   lastGamePlayed: string;
   lastUpdate: string;
-  matchesPlayed: string;
+  matchesPlayed: number;
   teamName: string;
   constructor(
     createDate: string = '',
@@ -12,7 +12,7 @@ export class EsportsTeam {
     id: number = 0,
     lastGamePlayed: string = '',
     lastUpdate: string = '',
-    matchesPlayed: string = '',
+    matchesPlayed: number = 0,
     teamName: string = ''
     ){
       this.createDate = createDate;

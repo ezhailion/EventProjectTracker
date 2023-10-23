@@ -9,10 +9,17 @@
     Disbanded Date: {{team.disbandedDate}}
     Matches Played: {{team.matchesPlayed}}
     <button (click)="editTeams(team)">Edit Team</button>
-    <button class="btn btn-dark"(click)="destroy(team.id)">Delete Team</button>  </li>
+    <button class="btn btn-dark"(click)="destroy(team.id)">Delete Team</button>
+  </li>
 
-
-
+  <button (click)="findAverage(); display = !display"> Find Average Matches Played!</button>
+<div *ngIf="!display">
+{{findAverage()}}
+</div>
+<br>
+<br>
+<br>
+<br>
 </div>
 <div *ngIf="selected && !editTeam">
 <p>Team Name: {{selected.teamName}} </p>
@@ -39,6 +46,8 @@
 
   </div>
 <form *ngIf="!selected">
+<h2> Add a New Team!</h2>
+
   Team Name: <input type="text" name="teamName" [(ngModel)]="newTeam.teamName">
  <br> Disband Date: <input type="date" name="disbandedDate" [(ngModel)]="newTeam.disbandedDate">
   <br> Matches Played: <input type="number" name="matchesPlayed" [(ngModel)]="newTeam.matchesPlayed"  >

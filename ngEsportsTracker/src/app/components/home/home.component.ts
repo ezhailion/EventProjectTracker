@@ -12,6 +12,7 @@ teams: EsportsTeam[] = [];
 selected: EsportsTeam | null = null;
 newTeam: EsportsTeam = new EsportsTeam();
 editTeam: EsportsTeam | null = null;
+display: boolean = true;
 constructor(
 private teamService: EsportsTeamService
 ){
@@ -35,11 +36,11 @@ loadTeams(){
 
   )
 }
-findAverage(){
+findAverage(): number{
 
+  let matches: number  = 0;
+  let counter: number = 0;
     if (Array.isArray(this.teams) && this.teams.length > 0) {
-      let matches: number = 0;
-      let counter: number = 0;
       for (let team of this.teams) {
         matches += team.matchesPlayed;
         counter++;
@@ -47,10 +48,11 @@ findAverage(){
       }
       console.log(matches);
       console.log(counter);
-        let avg = matches / counter;
-        console.log(avg);
-        return avg;
     }
+    let avg = matches / counter;
+
+    console.log(avg);
+    return Math.round(avg);
 
 }
 displayTeam(team: EsportsTeam): void{
