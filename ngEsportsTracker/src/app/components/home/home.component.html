@@ -1,9 +1,21 @@
 <h1>Sawyer's Esports Tracker</h1>
 
+<div id="teamListDiv">
 
-<ul>
 
-<li *ngFor="let team of teams">{{team | json}}  </li>
-<li *ngFor="let team of teams">{{team | json}}  </li>
 
-</ul>
+
+  <li (click)="editTeams()" *ngFor="let team of teams">{{team.teamName}} Disbanded Date: {{team.disbandedDate}} Matches Played: {{team.matchesPlayed}}  </li>
+
+
+
+</div>
+<form>
+  Team Name: <input type="text" name="teamName" [(ngModel)]="newTeam.teamName">
+ <br> Disband Date: <input type="date" name="disbandedDate" [(ngModel)]="newTeam.disbandedDate">
+  <br> Matches Played: <input type="number" name="matchesPlayed" [(ngModel)]="newTeam.matchesPlayed"  >
+ <br> <button class="btn btn-dark" (click)="addTeams(newTeam)">Add Team</button>
+  </form>
+
+
+

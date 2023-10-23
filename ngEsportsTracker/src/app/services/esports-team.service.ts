@@ -28,4 +28,38 @@ export class EsportsTeamService {
       )
     })
   }
+   create(team: EsportsTeam): Observable<EsportsTeam> {
+    return this.http.post<EsportsTeam>(this.url,team).pipe(
+      catchError((err:any) =>{
+        console.error(err);
+        return throwError(
+          () => new Error('EsportsTeamService.create(): error creating Team: ' + err)
+        );
+      })
+    );
+  }
+
+  update(editTeam: EsportsTeam):  Observable<EsportsTeam> {
+    return this.http.put<EsportsTeam>(this.url + "/" + editTeam.id,editTeam).pipe(
+      catchError((err:any) =>{
+        console.error(err);
+        return throwError(
+          () => new Error('EsportsTeamService.update(): error Updating Card: ' + err)
+        );
+      })
+    );
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError(
+          () => new Error('EsportsTeamService.delete(): error deleting Card: ' + err)
+        );
+      })
+    );
+  }
+
+
 }
