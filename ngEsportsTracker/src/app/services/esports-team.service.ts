@@ -39,12 +39,13 @@ export class EsportsTeamService {
     );
   }
 
-  update(editTeam: EsportsTeam):  Observable<EsportsTeam> {
-    return this.http.put<EsportsTeam>(this.url + "/" + editTeam.id,editTeam).pipe(
+  update(id: number, editTeam: EsportsTeam):  Observable<EsportsTeam> {
+    return this.http.put<EsportsTeam>(this.url + "/" + id,editTeam).pipe(
       catchError((err:any) =>{
         console.error(err);
+        console.log(editTeam);
         return throwError(
-          () => new Error('EsportsTeamService.update(): error Updating Card: ' + err)
+          () => new Error('EsportsTeamService.update(): error Updating Team: ' + err)
         );
       })
     );
@@ -55,7 +56,7 @@ export class EsportsTeamService {
       catchError((err: any) => {
         console.error(err);
         return throwError(
-          () => new Error('EsportsTeamService.delete(): error deleting Card: ' + err)
+          () => new Error('EsportsTeamService.delete(): error deleting Team: ' + err)
         );
       })
     );

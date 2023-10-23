@@ -35,6 +35,27 @@ loadTeams(){
 
   )
 }
+findAverage(){
+
+    if (Array.isArray(this.teams) && this.teams.length > 0) {
+      let matches: number = 0;
+      let counter: number = 0;
+      for (let team of this.teams) {
+        matches += team.matchesPlayed;
+        counter++;
+
+      }
+      console.log(matches);
+      console.log(counter);
+        let avg = matches / counter;
+        console.log(avg);
+        return avg;
+    }
+
+}
+displayTeam(team: EsportsTeam): void{
+  this.selected = team;
+}
 addTeams(team:EsportsTeam): void{
   this.teamService.create(team).subscribe({
     next: (createdTeam) => {
@@ -45,7 +66,7 @@ addTeams(team:EsportsTeam): void{
       console.error(err);
     }
   })
-
+this.newTeam = new EsportsTeam();
 }
 reload(){
   this.teamService.index().subscribe({
@@ -60,11 +81,12 @@ reload(){
     }
   })
 }
-editTeams(){
-this.editTeam = Object.assign({}, this.selected);
+editTeams(team: EsportsTeam){
+this.editTeam = team;
+console.log(this.editTeam);
 }
 updateTeam(team: EsportsTeam, setSelected: boolean = true){
-  this.teamService.update(team).subscribe({
+  this.teamService.update(team.id, team).subscribe({
     next: (updatedTeam: EsportsTeam | null) => {
       if(setSelected){
         updatedTeam = this.selected;
@@ -86,6 +108,7 @@ destroy(id: number){
       this.loadTeams();
       this.selected = null;
       this.editTeam = null;
+      this.reload();
     },
     error: (err) => {
       console.error('HomeComponent.destroy: error occured: ');
