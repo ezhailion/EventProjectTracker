@@ -26,6 +26,7 @@ this.loadTeams();
 loadTeams(){
   this.teamService.index().subscribe({
     next: (teamList) => {
+      this.selected = null;
       this.teams = teamList;
     },
     error: (err) => {
