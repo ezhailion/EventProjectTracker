@@ -1,58 +1,96 @@
-<h1>Sawyer's Esports Tracker</h1>
+<div class="container-fluid pull-right">
+  <span class="row">
+    <h1>Sawyer's Esports Tracker</h1>
+  </span>
 
-<div *ngIf="!selected" id="teamListDiv">
+  <div *ngIf="!selected" id="teamListDiv">
+    <table class="table table-hover table-striped">
+      <thead>
+        <th class="col" *ngFor="let header of headerArray">
+          {{header}}
+        </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams" (click)="displayTeam(team)">
+          <td>{{team.teamName}}</td>
+          <td>{{team.createDate}}</td>
+          <td>{{team.disbandedDate}}</td>
+          <td>{{team.matchesPlayed}}</td>
+          <div>
+            <button class="btn btn-warning margin-right-10" (click)="editTeams(team)">Edit Team</button>
+            <button class="btn btn-danger" (click)="destroy(team.id)">Delete Team</button>
+          </div>
+      </tr>
 
+    </tbody>
+    <tfoot class="table">
 
-
-
-  <li  *ngFor="let team of teams" (click)="displayTeam(team)">{{team.teamName}}
-    Disbanded Date: {{team.disbandedDate}}
-    Matches Played: {{team.matchesPlayed}}
-    <button (click)="editTeams(team)">Edit Team</button>
-    <button class="btn btn-dark"(click)="destroy(team.id)">Delete Team</button>
-  </li>
-
-  <button (click)="findAverage(); display = !display"> Find Average Matches Played!</button>
-<div *ngIf="!display">
-{{findAverage()}}
-</div>
-<br>
-<br>
-<br>
-<br>
-</div>
-<div *ngIf="selected && !editTeam">
-<p>Team Name: {{selected.teamName}} </p>
-<p>Date Created: {{selected.createDate}}</p>
-<p>Disband Date: {{selected.disbandedDate}}</p>
-<p>Matches Played: {{selected.matchesPlayed}}</p>
-<button (click)="loadTeams()">Back</button>
-<button (click)="editTeams(selected)">Edit</button>
-</div>
-<div *ngIf="editTeam">
-
-  <form>
-    <input type="hidden" name="id" [(ngModel)]="editTeam.id" >
-  <label for="teamName">Team Name</label>
-  <input type="text" name="teamName" [(ngModel)]="editTeam.teamName">
-  <label for="disbandedDate">Disband Date</label>
-  <input type="date" name="disbandedDate" [(ngModel)]="editTeam.disbandedDate">
-  <label for="matchesPlayed">Matches Played</label>
-  <input type="number" name="matchesPlayed" [(ngModel)]="editTeam.matchesPlayed">
-  <button (click)="editTeam = null">Cancel</button>
-  <button (click)="updateTeam(editTeam)">Save</button>
-  </form>
-
+      <tr scope="row">
+        <div class="">
+          <button class="btn btn-outline-info" (click)="findAverage(); display = !display">
+            Find Average Matches Played!
+          </button>
+        </div>
+        <td></td>
+        <td></td>
+        <td>
+          <div *ngIf="!display">
+            {{ findAverage() }}
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+    </table>
 
   </div>
-<form *ngIf="!selected">
-<h2> Add a New Team!</h2>
+  <div *ngIf="selected && !editTeam">
+    <p>Team Name: {{ selected.teamName }}</p>
+    <p>Date Created: {{ selected.createDate }}</p>
+    <p>Disband Date: {{ selected.disbandedDate }}</p>
+    <p>Matches Played: {{ selected.matchesPlayed }}</p>
+    <button (click)="loadTeams()">Back</button>
+    <button (click)="editTeams(selected)">Edit</button>
+  </div>
+  <div *ngIf="editTeam">
+    <form>
+      <input type="hidden" name="id" [(ngModel)]="editTeam.id" />
+      <label for="teamName">Team Name</label>
+      <input type="text" name="teamName" [(ngModel)]="editTeam.teamName" />
+      <label for="disbandedDate">Disband Date</label>
+      <input
+        type="date"
+        name="disbandedDate"
+        [(ngModel)]="editTeam.disbandedDate"
+      />
+      <label for="matchesPlayed">Matches Played</label>
+      <input
+        type="number"
+        name="matchesPlayed"
+        [(ngModel)]="editTeam.matchesPlayed"
+      />
+      <button (click)="editTeam = null">Cancel</button>
+      <button (click)="updateTeam(editTeam)">Save</button>
+    </form>
+  </div>
+  <form class="form-group" *ngIf="!selected">
+    <h2 id="NewTeamHeader">Add a New Team!</h2>
 
-  Team Name: <input type="text" name="teamName" [(ngModel)]="newTeam.teamName">
- <br> Disband Date: <input type="date" name="disbandedDate" [(ngModel)]="newTeam.disbandedDate">
-  <br> Matches Played: <input type="number" name="matchesPlayed" [(ngModel)]="newTeam.matchesPlayed"  >
- <br> <button class="btn btn-dark" (click)="addTeams(newTeam)">Add Team</button>
+    Team Name:
+    <input type="text" name="teamName" [(ngModel)]="newTeam.teamName" /> <br />
+    Disband Date:
+    <input
+      type="date"
+      name="disbandedDate"
+      [(ngModel)]="newTeam.disbandedDate"
+    />
+    <br />
+    Matches Played:
+    <input
+      type="number"
+      name="matchesPlayed"
+      [(ngModel)]="newTeam.matchesPlayed"
+    />
+    <br />
+    <button class="btn btn-dark" (click)="addTeams(newTeam)">Add Team</button>
   </form>
-
-
-
+</div>

@@ -13,6 +13,7 @@ selected: EsportsTeam | null = null;
 newTeam: EsportsTeam = new EsportsTeam();
 editTeam: EsportsTeam | null = null;
 display: boolean = true;
+headerArray: Array<string> = ["Team Name", "Created Date", "Disbanded Date", "Matches Played", "Actions"];
 constructor(
 private teamService: EsportsTeamService
 ){
